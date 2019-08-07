@@ -27,6 +27,13 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
+Route::post('user-register','API\UserController@register');
+Route::post('user-login','API\UserController@login');
+Route::group(['middleware' => ['web']], function () {
+    Route::get('login/{provider}/callback','API\SocialController@Callback');
+    Route::get('login/{provider}', 'API\SocialController@redirect');
+});
+
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/user', 'UserController@index');
 });

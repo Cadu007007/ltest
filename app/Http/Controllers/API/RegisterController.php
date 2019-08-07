@@ -6,16 +6,14 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 
-use App\Http\Controllers\API\BaseController as BaseController;
-
 use App\User;
 
 use Illuminate\Support\Facades\Auth;
 
 use Validator;
+use App\Http\Controllers\Controller;
 
-
-class RegisterController extends BaseController
+class RegisterController extends Controller
 
 {
 
@@ -32,25 +30,6 @@ class RegisterController extends BaseController
     public function register(Request $request)
 
     {
-
-        $validator = Validator::make($request->all(), [
-
-            'name' => 'required',
-
-            'email' => 'required|email',
-
-            'password' => 'required',
-
-            'c_password' => 'required|same:password',
-
-        ]);
-
-
-        if($validator->fails()){
-
-            return $this->sendError('Validation Error.', $validator->errors());       
-
-        }
 
 
         $input = $request->all();
